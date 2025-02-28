@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Ambev</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #FFA500, rgba(0, 0, 0, 0.5)), url('https://media.revide.com.br/cache/5f/09/5f09a010254f87066bebe98df00ca184.jpg') no-repeat bottom;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+        .login-container {
+            background: rgba(255, 165, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: white;
+            width: 300px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+        .login-container img {
+            width: 200px; /* Aumentado 100% */
+            margin-bottom: 20px;
+        }
+        .login-container input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-length: 25;
+        }
+        .login-container button {
+            width: 90%;
+            padding: 10px;
+            background: black;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="https://logodownload.org/wp-content/uploads/2020/01/ambev-logo-0.png" alt="Logo Ambev">
+        <input type="email" id="email" placeholder="Email" maxlength="25">
+        <input type="password" id="id" placeholder="ID" maxlength="25">
+        <button onclick="login()">Login</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        async function login() {
+            const email = document.getElementById('email').value;
+            const id = document.getElementById('id').value;
+            const response = await fetch('https://api.github.com/users/' + email);
+            const data = await response.json();
+
+            if (data && data.id == id) {
+                document.getElementById('message').innerText = 'Login efetuado com sucesso!';
+            } else {
+                document.getElementById('message').innerText = 'Você não é conferente!';
+            }
+        }
+    </script>
+</body>
